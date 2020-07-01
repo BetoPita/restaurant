@@ -18,3 +18,11 @@ exports.crearProducto = async(req,res) => {
         res.status(500).send('Hubo un error');
     }
 }
+exports.getProductos = async(req,res)=>{
+    try {
+        const productos = await Productos.find();
+        res.status(200).send(productos);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}

@@ -1,13 +1,13 @@
 //ref https://bezkoder.com/node-js-upload-resize-multiple-images/
 const multer = require("multer");
 const sharp = require("sharp");
+const ImagenesProductos = require('../models/ImagenesProductos');
 const multerStorage = multer.memoryStorage();
-
 const multerFilter = (req, file, cb) => {
   if (file.mimetype.startsWith("image")) {
     cb(null, true);
   } else {
-    cb("Please upload only images.", false);
+    return res.status(400).send({msg:"Sólamente se pueden ingresar imagenes"});
   }
 };
 
@@ -58,9 +58,23 @@ const getResult = async (req, res) => {
   if (!req.body.images) {
     return res.status(400).send({msg:"Debes ingresar por lo menos una imagen"});
   }
-  const images = req.body.images
-    .map(image => "" + image + "")
-    .join("");
+  
+  const productId = req.params.id;
+  
+  //req.body.images.forEach(saveImageDb);
+  // const images = req.body.images
+  //   .map(image => "" + image + "")
+  //   .join("");
+  req.body.images.forEach( function(valor) {
+    const newImageProduct = {
+      imagen:valor,
+      productoId:req.params.id,
+      userId : req.usuario.id
+    }
+    const imagenes_productos = new ImagenesProductos(newImageProduct);
+    imagenes_productos.save();
+});
+  
   return res.status(200).send({msg:"Imagenes subidas con éxito",images:req.body.images});
 };
 

@@ -16,7 +16,6 @@ app.use('/api/usuarios',require('./routes/usuarios'));
 app.use('/api/auth',require('./routes/auth'));
 app.use('/api/categorias',require('./routes/categorias'));
 app.use('/api/productos',require('./routes/productos'));
-app.use('/api/imagenes_productos',require('./routes/imagenes_productos'));
 app.use('/api/restaurant',require('./routes/restaurant'));
 app.use('/api/img_products',require('./routes/img_products'));
 

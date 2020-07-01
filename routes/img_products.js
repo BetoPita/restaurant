@@ -5,7 +5,10 @@ const auth = require('../middleware/auth');
 const uploadController = require("../controllers/imgProductsController");
 
 router.post(
-    "/multiple-upload",auth,
+    "/multiple-upload/:id",auth,
+    [
+        check("productoId","Es necesario ingresar el producto").notEmpty()
+    ],
     uploadController.uploadImages,
     uploadController.resizeImages,
     uploadController.getResult

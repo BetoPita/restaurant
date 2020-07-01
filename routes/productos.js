@@ -17,5 +17,9 @@ router.post('/',auth,
     ],
     Producto.crearProducto
 );
+//obtener productos
+router.get('/',auth,
+    Producto.getProductos
+)
 
 module.exports = router;
