@@ -54,7 +54,6 @@ exports.actualizarCategoria = async(req,res)=>{
         categoria_update = await Categoria.findByIdAndUpdate({_id:req.params.id},{$set : nuevaCategoria},{new:true});
         res.json({categoria_update});
     } catch (error) {
-        console.log(error);
         res.status(500).send('Error en el servidor');
     }
 }

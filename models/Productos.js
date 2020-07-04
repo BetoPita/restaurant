@@ -26,6 +26,11 @@ const ProductosSchema = mongoose.Schema({
         type : mongoose.Schema.Types.ObjectId,
         ref: 'Categorias' 
     },
+    precio:{
+        type:Number,
+        require:true,
+        trim:true
+    },
     userId:{
         type : mongoose.Schema.Types.ObjectId,
         ref: 'Usuario' 
